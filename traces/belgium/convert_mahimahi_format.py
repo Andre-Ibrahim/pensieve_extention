@@ -12,7 +12,7 @@ BITS_IN_BYTE = 8.0
 def main():
 	files = os.listdir(FILE_PATH)
 	for trace_file in files:
-		with open(FILE_PATH + trace_file, 'rb') as f, open(OUTPUT_PATH + trace_file, 'wb') as mf:
+		with open(FILE_PATH + trace_file, 'rb') as f, open(OUTPUT_PATH + trace_file, 'w') as mf:
 			time_ms = []
 			bytes_recv = []
 			recv_time = []
@@ -30,7 +30,7 @@ def main():
 			millisec_time = 0
 			mf.write(str(millisec_time) + '\n')
 
-			for i in xrange(len(throughput_all)):
+			for i in range(len(throughput_all)):
 
 				throughput = throughput_all[i]
 				
@@ -45,7 +45,7 @@ def main():
 					to_send = (millisec_count * pkt_per_millisec) - pkt_count
 					to_send = np.floor(to_send)
 
-					for i in xrange(int(to_send)):
+					for i in range(int(to_send)):
 						mf.write(str(millisec_time) + '\n')
 
 					pkt_count += to_send
