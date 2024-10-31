@@ -10,7 +10,7 @@ class Request_Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = json.loads(self.rfile.read(content_length))
-        print post_data
+        print(post_data)
         self.send_response(200)
         self.send_header('Content-Type', 'text/plain')
         # Hongzi: this is where the RL algorithm will be called (rather than always returning a quality of '1')
@@ -36,7 +36,7 @@ class Request_Handler(BaseHTTPRequestHandler):
 def run(server_class=HTTPServer, handler_class=Request_Handler, port=8333):
     server_address = ('localhost', port)
     httpd = server_class(server_address, handler_class)
-    print 'Listening on port ' + str(port)
+    print('Listening on port ' + str(port))
     httpd.serve_forever()
 
 if __name__ == "__main__":
